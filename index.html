@@ -6,7 +6,7 @@
     <title>Agenda</title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
-
+    <link rel="stylesheet" type="text/css" href="css/ui.css">
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-messages.js"></script>
     <script src="js/app.js"></script>
@@ -18,10 +18,14 @@
     <script src="js/config/serialGeneratorConfig.js"></script>
     <script src="js/filters/nameFilter.js"></script>
     <script src="js/filters/ellipsisFilter.js"></script>
+    <script src="js/directives/uiAlertDirective.js"></script>
 </head>
 <body ng-controller="agendaCtrl">
 <div class="jumbotron">
     <h3>{{app}}</h3>
+    <ui-alert title="Ops, aconteceu um problema!">{{error}}</ui-alert>
+    <ui-alert title="Série sobre AngularJS!">Episódio 10 criando diretivas</ui-alert>
+
     <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
     <table ng-show="contatos.length > 0" class="table ">
         <tr>

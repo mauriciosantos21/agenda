@@ -6,7 +6,7 @@ angular.module("agenda").controller("agendaCtrl", function ($scope, $http, conta
         contatosAPI.getContatos().then(function (response) {
             $scope.contatos = response.data;
         }).catch(function (data, status) {
-            $scope.message = "Aconteceu um problema: " + data;
+            $scope.error = "Não foi possível carregar os dados";
         });
     };
     var carregarOperadoras = function () {
