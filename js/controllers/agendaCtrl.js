@@ -1,22 +1,23 @@
-angular.module("agenda").controller("agendaCtrl", function ($scope, $http) {
+angular.module("agenda").controller("agendaCtrl", function ($scope, $http, contatosAPI, operadorasAPI, serialGenerator) {
     $scope.app = "Agenda";
     $scope.contatos = [];
     $scope.operadoras = [];
     var carregarContatos = function () {
-        $http.get("http://localhost:3412/contatos").then(function (response) {
+        contatosAPI.getContatos().then(function (response) {
             $scope.contatos = response.data;
         }).catch(function (data, status) {
             $scope.message = "Aconteceu um problema: " + data;
         });
     };
     var carregarOperadoras = function () {
-        $http.get("http://localhost:3412/operadoras").then(function (response) {
+        operadorasAPI.getOperadoras().then(function (response) {
             $scope.operadoras = response.data;
         });
     };
     $scope.adicionarContato = function (contato) {
+        contato.serial = serialGenerator.generate();
         contato.data = new Date();
-        $http.post("http://localhost:3412/contatos", contato).then(function (data) {
+        contatosAPI.saveContato(contato).then(function (data) {
             delete $scope.contato;
             $scope.contatoForm.$setPristine();
             carregarContatos();
