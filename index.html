@@ -19,10 +19,21 @@
     <script src="js/filters/nameFilter.js"></script>
     <script src="js/filters/ellipsisFilter.js"></script>
     <script src="js/directives/uiAlertDirective.js"></script>
+    <script src="js/directives/uiDateDirective.js"></script>
+    <script src="js/directives/uiAccordionDirective.js"></script>
 </head>
 <body ng-controller="agendaCtrl">
 <div class="jumbotron">
     <h3>{{app}}</h3>
+    <ui-accordions>
+        <ui-accordion title="Accordion 1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </ui-accordion>
+        <ui-accordion title="Accordion 2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </ui-accordion>
+    </ui-accordions>
+
     <ui-alert title="Ops, aconteceu um problema!">{{error}}</ui-alert>
     <ui-alert title="Série sobre AngularJS!">Episódio 10 criando diretivas</ui-alert>
 
@@ -42,13 +53,14 @@
             <td>{{contato.nome | name | ellipsis:10}}</td>
             <td>{{contato.telefone}}</td>
             <td>{{contato.operadora.nome}}</td>
-            <td>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{contato.data | date:'dd/MM/yyyy'}}</td>
         </tr>
     </table>
     <hr/>
     <form name="contatoForm">
         <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="10"/>
         <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+        <input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
         <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' )' for operadora in operadoras | orderBy:'nome'">
             <option value="">Selecione uma operadora</option>
         </select>
