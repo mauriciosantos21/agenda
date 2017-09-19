@@ -1,1 +1,1 @@
-angular.module("agenda", ["ngMessages"]);
+angular.module("agenda", ["ngMessages",  "serialGenerator", "ui"]);
